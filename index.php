@@ -1,7 +1,3 @@
-<?php
-require_once 'controllers/retrospectiva_controller.php';
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,6 +8,10 @@ require_once 'controllers/retrospectiva_controller.php';
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
+
+<?php
+require_once 'controllers/retrospectiva_controller.php';
+?>
 
 </body>
 </html>
