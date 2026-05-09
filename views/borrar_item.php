@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 
     if ($resultado) {
 
-        header('Location: lista_items.php');
+        header('Location: ../index.php');
         exit;
 
     } else {
