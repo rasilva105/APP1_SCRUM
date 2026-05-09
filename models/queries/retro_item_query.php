@@ -1,6 +1,6 @@
 <?php
 
-require_once 'models/config/model_base.php';
+require_once __DIR__ . '/../config/model_base.php';
 
 class RetroItemQuery extends ModelBase {
 

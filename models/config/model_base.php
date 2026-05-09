@@ -1,6 +1,6 @@
 <?php
 
-require_once 'connection_db.php';
+require_once __DIR__ . '/connection_db.php';
 
 class ModelBase {
 
