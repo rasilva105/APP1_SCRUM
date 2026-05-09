@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../../Base de datos/Conexion.php';
+require_once __DIR__ . '/../../Base de datos/Conexion.php';
 
 class ConnectionDB {
 
