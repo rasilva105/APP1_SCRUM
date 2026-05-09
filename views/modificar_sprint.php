@@ -20,8 +20,11 @@ if (isset($_GET['id'])) {
 if (isset($_POST['modificar_sprint'])) {
 
     $id = $_POST['id'];
+
     $nombre = $_POST['nombre'];
+
     $fecha_inicio = $_POST['fecha_inicio'];
+
     $fecha_fin = $_POST['fecha_fin'];
 
     $sql = "UPDATE sprints
@@ -32,16 +35,15 @@ if (isset($_POST['modificar_sprint'])) {
 
     mysqli_query($query->db, $sql);
 
-    header('Location: lista_sprints.php');
+    header('Location: ../index.php');
+
     exit;
 }
 
-if (!$sprint) {
-    die("Sprint no encontrado");
-}
-
 ?>
+
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
@@ -57,10 +59,8 @@ if (!$sprint) {
 <body>
 
 <div class="container">
-</div>
 
-</body>
-</html>
+<h1>Modificar Sprint</h1>
 
 <form method="POST">
 
@@ -70,17 +70,23 @@ if (!$sprint) {
         value="<?= $sprint['id'] ?>"
     >
 
+    <label>Nombre del Sprint</label>
+
     <input
         type="text"
         name="nombre"
         value="<?= $sprint['nombre'] ?>"
     >
 
+    <label>Fecha Inicio</label>
+
     <input
         type="date"
         name="fecha_inicio"
         value="<?= $sprint['fecha_inicio'] ?>"
     >
+
+    <label>Fecha Fin</label>
 
     <input
         type="date"
@@ -89,7 +95,15 @@ if (!$sprint) {
     >
 
     <button type="submit" name="modificar_sprint">
+
         Modificar Sprint
+
     </button>
 
 </form>
+
+</div>
+
+</body>
+
+</html>

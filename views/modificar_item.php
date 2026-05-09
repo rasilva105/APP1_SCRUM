@@ -20,9 +20,13 @@ if (isset($_GET['id'])) {
 if (isset($_POST['modificar_item'])) {
 
     $id = $_POST['id'];
+
     $categoria = $_POST['categoria'];
+
     $descripcion = $_POST['descripcion'];
+
     $cumplida = $_POST['cumplida'];
+
     $fecha_revision = $_POST['fecha_revision'];
 
     $sql = "UPDATE retro_items
@@ -34,16 +38,15 @@ if (isset($_POST['modificar_item'])) {
 
     mysqli_query($query->db, $sql);
 
-    header('Location: lista_items.php');
+    header('Location: ../index.php');
+
     exit;
 }
 
-if (!$item) {
-    die("Item no encontrado");
-}
-
 ?>
+
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
@@ -59,54 +62,39 @@ if (!$item) {
 <body>
 
 <div class="container">
-    </div>
 
-</body>
-</html>
+<h1>Modificar Item</h1>
 
 <form method="POST">
 
-    <input type="hidden" name="id" value="<?= $item['id'] ?>">
+    <input
+        type="hidden"
+        name="id"
+        value="<?= $item['id'] ?>"
+    >
 
     <select name="categoria">
 
-        <option value="accion"
-            <?= $item['categoria'] == 'accion' ? 'selected' : '' ?>>
-            Acción
-        </option>
+        <option value="accion">Acción</option>
 
-        <option value="logro"
-            <?= $item['categoria'] == 'logro' ? 'selected' : '' ?>>
-            Logro
-        </option>
+        <option value="logro">Logro</option>
 
-        <option value="impedimento"
-            <?= $item['categoria'] == 'impedimento' ? 'selected' : '' ?>>
-            Impedimento
-        </option>
+        <option value="impedimento">Impedimento</option>
 
-        <option value="comentario"
-            <?= $item['categoria'] == 'comentario' ? 'selected' : '' ?>>
-            Comentario
-        </option>
+        <option value="comentario">Comentario</option>
 
-        <option value="otro"
-            <?= $item['categoria'] == 'otro' ? 'selected' : '' ?>>
-            Otro
-        </option>
+        <option value="otro">Otro</option>
 
     </select>
 
     <textarea name="descripcion"><?= $item['descripcion'] ?></textarea>
 
     <select name="cumplida">
-        <option value="1" <?= $item['cumplida'] == 1 ? 'selected' : '' ?>>
-            Cumplida
-        </option>
 
-        <option value="0" <?= $item['cumplida'] == 0 ? 'selected' : '' ?>>
-            No cumplida
-        </option>
+        <option value="1">Cumplida</option>
+
+        <option value="0">No cumplida</option>
+
     </select>
 
     <input
@@ -116,7 +104,15 @@ if (!$item) {
     >
 
     <button type="submit" name="modificar_item">
+
         Modificar Item
+
     </button>
 
 </form>
+
+</div>
+
+</body>
+
+</html>
