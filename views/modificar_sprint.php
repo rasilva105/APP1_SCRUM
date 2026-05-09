@@ -41,6 +41,26 @@ if (!$sprint) {
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Modificar Sprint</title>
+
+    <link rel="stylesheet" href="../public/css/index.css">
+
+</head>
+
+<body>
+
+<div class="container">
+</div>
+
+</body>
+</html>
 
 <form method="POST">
 
