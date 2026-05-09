@@ -1,27 +1,32 @@
-<?php // Vista: confirmar borrado de ítem
-$cat_emoji = ['logro'=>'✅','impedimento'=>'⚠️','accion'=>'🎯','comentario'=>'💬','otro'=>'🔖'];
+<?php
+
+require_once '../models/queries/retro_item_query.php';
+
+$query = new RetroItemQuery();
+
+if (isset($_GET['id'])) {
+
+    $id = $_GET['id'];
+
+    $sql = "DELETE FROM retro_items WHERE id = $id";
+
+    $resultado = mysqli_query($query->db, $sql);
+
+    if ($resultado) {
+
+        header('Location: lista_items.php');
+        exit;
+
+    } else {
+
+        echo "Error al eliminar el item";
+
+    }
+
+} else {
+
+    echo "ID de item no válido";
+
+}
+
 ?>
-
-<a href="index.php?accion=lista_items&sprint_id=<?= $sprint->getId() ?>" class="back-link">
-  ← Volver a <?= htmlspecialchars($sprint->getNombre()) ?>
-</a>
-
-<div class="page-title">Eliminar Ítem</div>
-<div class="page-sub">Esta acción es irreversible.</div>
-
-<div class="confirm-box">
-  <p>¿Estás seguro de que deseas eliminar este ítem?</p>
-  <p class="confirm-name">
-    <?= $cat_emoji[$item->getCategoria()] ?>
-    <?= htmlspecialchars($item->getDescripcion()) ?>
-  </p>
-  <p style="color:var(--muted);font-size:.83rem;margin-top:6px;">
-    Sprint: <?= htmlspecialchars($sprint->getNombre()) ?>
-  </p>
-  <div class="form-actions" style="margin-top:24px;">
-    <a href="index.php?accion=lista_items&sprint_id=<?= $sprint->getId() ?>"
-       class="btn btn-secondary">Cancelar</a>
-    <a href="index.php?accion=borrar_item&id=<?= $item->getId() ?>&confirmar=1"
-       class="btn btn-danger">🗑️ Sí, eliminar</a>
-  </div>
-</div>

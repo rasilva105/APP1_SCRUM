@@ -1,27 +1,13 @@
 <?php
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "registro_retro_db";
 
-$conn = new mysqli(
-    "localhost",
-    "root",
-    "",
-    "registro_retro_db"
-);
+$conn = mysqli_connect($host, $user, $password, $database);
 
-if($conn->connect_error){
-    die("Error de conexión");
+if (!$conn) {
+    die("Error de conexión: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM sprints";
-
-$resultado = $conn->query($sql);
-
-echo "<h1>Listado de Sprints</h1>";
-
-while($fila = $resultado->fetch_assoc()){
-
-    echo "ID: " . $fila['id'] . "<br>";
-    echo "Nombre: " . $fila['nombre'] . "<br>";
-    echo "Inicio: " . $fila['fecha_inicio'] . "<br>";
-    echo "Fin: " . $fila['fecha_fin'] . "<br><hr>";
-}
 ?>

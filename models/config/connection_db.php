@@ -1,5 +1,13 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'registro_retro_db');
+
+require_once 'Base de datos/Conexion.php';
+
+class ConnectionDB {
+
+    public static function connect() {
+        global $conn;
+        return $conn;
+    }
+}
+
+?>

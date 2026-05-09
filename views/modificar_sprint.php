@@ -1,66 +1,75 @@
-<?php // Vista: editar sprint ?>
+<?php
 
-<a href="index.php?accion=lista_sprints" class="back-link">← Volver a Sprints</a>
+require_once '../models/queries/sprint_query.php';
 
-<div class="page-title">Editar Sprint</div>
-<div class="page-sub">Modifica los datos del sprint seleccionado.</div>
+$query = new SprintQuery();
 
-<!-- STEPPER -->
-<div class="stepper">
-  <div class="step done">
-    <div class="step-circle">✓</div>
-    <div class="step-label">Selección</div>
-  </div>
-  <div class="step-line done"></div>
-  <div class="step active">
-    <div class="step-circle">2</div>
-    <div class="step-label">Editar datos</div>
-  </div>
-  <div class="step-line"></div>
-  <div class="step">
-    <div class="step-circle">3</div>
-    <div class="step-label">Guardar</div>
-  </div>
-</div>
+$sprint = null;
 
-<div class="card" style="max-width:580px;">
-  <form method="POST" action="index.php?accion=modificar_sprint">
-    <input type="hidden" name="id" value="<?= $sprint->getId() ?>">
+if (isset($_GET['id'])) {
 
-    <div class="section-header">
-      <div class="section-dot" style="background:var(--accent);"></div>
-      <div class="section-title">Paso 2 — Editar datos del Sprint</div>
-      <div class="section-line"></div>
-    </div>
-    <div class="form-row">
-      <label for="nombre">Nombre *</label>
-      <input type="text" id="nombre" name="nombre"
-             value="<?= htmlspecialchars($sprint->getNombre()) ?>" required>
-    </div>
-    <div class="grid-2">
-      <div class="form-row">
-        <label for="fecha_inicio">Fecha de inicio *</label>
-        <input type="date" id="fecha_inicio" name="fecha_inicio"
-               value="<?= $sprint->getFechaInicio() ?>" required>
-      </div>
-      <div class="form-row">
-        <label for="fecha_fin">Fecha de fin *</label>
-        <input type="date" id="fecha_fin" name="fecha_fin"
-               value="<?= $sprint->getFechaFin() ?>" required>
-      </div>
-    </div>
+    $id = $_GET['id'];
 
-    <hr class="divider">
+    $sql = "SELECT * FROM sprints WHERE id = $id";
 
-    <div class="section-header">
-      <div class="section-dot" style="background:var(--comment);"></div>
-      <div class="section-title">Paso 3 — Guardar cambios</div>
-      <div class="section-line"></div>
-    </div>
-    <div class="form-actions">
-      <a href="index.php?accion=lista_sprints" class="btn btn-secondary">Cancelar</a>
-      <button type="submit" class="btn btn-primary">💾 Guardar cambios</button>
-    </div>
+    $resultado = mysqli_query($query->db, $sql);
 
-  </form>
-</div>
+    $sprint = mysqli_fetch_assoc($resultado);
+}
+
+if (isset($_POST['modificar_sprint'])) {
+
+    $id = $_POST['id'];
+    $nombre = $_POST['nombre'];
+    $fecha_inicio = $_POST['fecha_inicio'];
+    $fecha_fin = $_POST['fecha_fin'];
+
+    $sql = "UPDATE sprints
+            SET nombre='$nombre',
+                fecha_inicio='$fecha_inicio',
+                fecha_fin='$fecha_fin'
+            WHERE id=$id";
+
+    mysqli_query($query->db, $sql);
+
+    header('Location: lista_sprints.php');
+    exit;
+}
+
+if (!$sprint) {
+    die("Sprint no encontrado");
+}
+
+?>
+
+<form method="POST">
+
+    <input
+        type="hidden"
+        name="id"
+        value="<?= $sprint['id'] ?>"
+    >
+
+    <input
+        type="text"
+        name="nombre"
+        value="<?= $sprint['nombre'] ?>"
+    >
+
+    <input
+        type="date"
+        name="fecha_inicio"
+        value="<?= $sprint['fecha_inicio'] ?>"
+    >
+
+    <input
+        type="date"
+        name="fecha_fin"
+        value="<?= $sprint['fecha_fin'] ?>"
+    >
+
+    <button type="submit" name="modificar_sprint">
+        Modificar Sprint
+    </button>
+
+</form>
