@@ -22,6 +22,19 @@ if (!isset($sprints)) {
     <td><?= $sprint['nombre'] ?></td>
     <td><?= $sprint['fecha_inicio'] ?></td>
     <td><?= $sprint['fecha_fin'] ?></td>
+    <td>
+        <a href="views/modificar_sprint.php?id=<?= $sprint['id'] ?>">
+            Modificar
+        </a>
+        |
+        <a
+            href="views/borrar_sprint.php?id=<?= $sprint['id'] ?>"
+            onclick="return confirm('¿Eliminar sprint?')"
+        >
+            Eliminar
+        </a>
+    </td>
+
 </tr>
 
 <?php } ?>

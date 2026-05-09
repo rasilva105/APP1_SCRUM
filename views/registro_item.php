@@ -48,35 +48,3 @@ while($sprint = mysqli_fetch_assoc($sprints)) {
 </button>
 
 </form>
-```php
-<h2>Registro Item</h2>
-
-<form method="POST">
-
-<select name="sprint_id">
-
-<?php
-mysqli_data_seek($sprints, 0);
-while($sprint = mysqli_fetch_assoc($sprints)) {
-?>
-
-<option value="<?= $sprint['id'] ?>">
-    <?= $sprint['nombre'] ?>
-</option>
-
-<?php } ?>
-
-</select>
-
-<select name="categoria">
-    <option value="accion">Acción</option>
-    <option value="logro">Logro</option>
-</select>
-
-<textarea name="descripcion"></textarea>
-
-<button type="submit" name="guardar_item">
-    Guardar Item
-</button>
-
-</form>

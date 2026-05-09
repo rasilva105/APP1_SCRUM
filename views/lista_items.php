@@ -23,6 +23,18 @@ if (!isset($items)) {
     <td><?= $item['sprint_nombre'] ?></td>
     <td><?= $item['categoria'] ?></td>
     <td><?= $item['descripcion'] ?></td>
+     <td>
+        <a href="views/modificar_item.php?id=<?= $item['id'] ?>">
+            Modificar
+        </a>
+        |
+        <a
+            href="views/borrar_item.php?id=<?= $item['id'] ?>"
+            onclick="return confirm('¿Eliminar item?')"
+        >
+            Eliminar
+        </a>
+    </td>
 </tr>
 
 <?php } ?>
