@@ -232,7 +232,6 @@ textarea       { resize: vertical; min-height: 80px; }
   border: 1px solid rgba(255,107,107,.25);
   border-radius: var(--radius); padding: 24px; max-width: 480px;
 }
-.HEAD
 .confirm-box p { margin-bottom: 8px; font-size: .9rem; }
 .confirm-name  { font-weight: 700; color: var(--danger); }
 
@@ -252,7 +251,3 @@ textarea       { resize: vertical; min-height: 80px; }
   .sprint-item   { flex-direction: column; gap: 10px; }
   .step-label    { display: none; }
 }
-.progress-fill 
-  height
-}
-
